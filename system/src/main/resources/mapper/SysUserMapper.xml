@@ -4,4 +4,12 @@
     <select id="getUserInfoByID" resultType="com.cslink.domain.SysUser">
         SELECT * FROM sys_user where user_id = #{userid}
     </select>
+
+    <select id="existUserName" resultType="com.cslink.domain.vo.SignupVO">
+        SELECT username FROM sys_user where username = #{username}
+    </select>
+
+    <select id="existEmail" resultType="com.cslink.domain.vo.SignupVO">
+        SELECT emial FROM sys_user where email = #{email}
+    </select>
 </mapper>

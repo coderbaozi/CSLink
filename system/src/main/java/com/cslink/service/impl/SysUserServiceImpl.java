@@ -2,6 +2,7 @@ package com.cslink.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.cslink.domain.SysUser;
+import com.cslink.domain.vo.SignupVO;
 import com.cslink.mapper.SysUserMapper;
 import com.cslink.service.ISysUserService;
 import jakarta.annotation.Resource;
@@ -24,4 +25,5 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper,SysUser> imple
     public List<SysUser> getUserInfoByID(Integer userID) {
         return sysUserMapper.getUserInfoByID(userID);
     }
+
 }
