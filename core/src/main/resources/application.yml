@@ -23,6 +23,20 @@ spring:
           max-wait: 1
           max-idle: 8
           min-idle: 1
+  mail:
+    host: smtp.yeah.net
+    username: cslink@yeah.net
+    password: UTBTHODMSMLAYSXQ
+    port: 25
+    protocol: smtp
+    default-encoding: UTF-8
+    properties:
+      mail.smtp.auth: true
+      mail.smtp.starttls.enable: true
+      mail.smtp.starttls.required: true
+      mail.smtp.socketFactory.port: 465
+      mail.smtp.socketFactory.class: javax.net.ssl.SSLSocketFactory
+      mail.smtp.socketFactory.fallback: false
 #mybatis-plus:
 #  configuration:
 #
