@@ -11,4 +11,6 @@ public class SignupVO {
     private String username;
     private String password;
     private String email;
+    private String code;
+    private String uuid;
 }

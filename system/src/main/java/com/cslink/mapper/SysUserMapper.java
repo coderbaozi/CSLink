@@ -14,4 +14,6 @@ public interface SysUserMapper extends BaseMapper<SysUser> {
     SignupVO existUserName(String username);
 
     SignupVO existEmail(String email);
+
+    Integer saveUser(SignupVO user);
 }

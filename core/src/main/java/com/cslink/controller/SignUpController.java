@@ -1,17 +1,27 @@
 package com.cslink.controller;
 
+import com.cslink.constants.RedisPrefix;
+import com.cslink.constants.SignUpError;
+import com.cslink.domain.vo.SignupVO;
 import com.cslink.service.ISignUpService;
 import com.cslink.utils.AjaxResult;
+import com.cslink.utils.GenerateCaptcha;
+import com.cslink.utils.RedisCache;
+import com.cslink.utils.UUIDUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.security.NoSuchAlgorithmException;
+import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 @RestController
 public class SignUpController {
     @Autowired
     ISignUpService signUpService;
 
+    @Autowired
+    RedisCache redisCache;
     @GetMapping("/existUserName/{username}")
     public AjaxResult existUserName(@PathVariable("username") String username) {
         boolean exist = signUpService.existUserName(username);
@@ -22,6 +32,33 @@ public class SignUpController {
     public AjaxResult existEmail(@PathVariable("email") String email) {
         boolean exist = signUpService.existEmail(email);
         return AjaxResult.success(exist);
+    }
+
+    @PostMapping("/getcode")
+    public AjaxResult getCode(@RequestBody SignupVO user) {
+        String uuid = signUpService.getCode(user);
+        Map data = new HashMap<String,Object>();
+        data.put("uuid",uuid);
+        if(uuid == SignUpError.ERROR_EXISTED){
+            return AjaxResult.success(SignUpError.ERROR_REPEATED);
+        } else if (uuid == SignUpError.ERROR_EXISTED) {
+            return AjaxResult.success(SignUpError.ERROR_EXISTED);
+        }
+        // send code
+        return AjaxResult.success("success",data);
+    }
+
+    @PostMapping("/signup")
+    public AjaxResult signUp(@RequestBody SignupVO user) {
+        String token = null;
+        try {
+            token = signUpService.verifyCode(user);
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        }
+        Map res = new HashMap<>();
+        res.put("token",token);
+        return AjaxResult.success(res);
     }
 
     // TODO 增加单元测试

@@ -1,5 +1,7 @@
 package com.cslink.controller;
 
+import com.cslink.service.IMailService;
+import com.cslink.utils.GenerateCaptcha;
 import com.cslink.utils.RedisCache;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class CoreController {
     @Autowired
     RedisCache redisCache;
+
     @GetMapping("/core")
     public String coreTest() {
         return "Hi! Core";

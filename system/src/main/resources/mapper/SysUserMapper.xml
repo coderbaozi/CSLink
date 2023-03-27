@@ -10,6 +10,10 @@
     </select>
 
     <select id="existEmail" resultType="com.cslink.domain.vo.SignupVO">
-        SELECT emial FROM sys_user where email = #{email}
+        SELECT email FROM sys_user where email = #{email}
     </select>
+
+    <insert id="saveUser" parameterType="com.cslink.domain.vo.SignupVO">
+        insert into sys_user(username,email,password) values(#{username},#{email},#{password})
+    </insert>
 </mapper>
