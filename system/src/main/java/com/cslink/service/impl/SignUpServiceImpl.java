@@ -49,7 +49,7 @@ public class SignUpServiceImpl implements ISignUpService {
         String code = GenerateCaptcha.getCode();
         String codeUUid = UUIDUtils.getUUID();
         redisCache.setCacheObject(RedisPrefix.SIGN_UP + user.toString(),1,90,TimeUnit.SECONDS);
-        redisCache.setCacheObject(RedisPrefix.SIGN_UP + codeUUid, code,90, TimeUnit.SECONDS);
+        redisCache.setCacheObject(RedisPrefix.SIGN_UP + codeUUid, code,5, TimeUnit.MINUTES);
         mailService.sendMail(user.getEmail(), "Captcha",code);
         return codeUUid;
     }
@@ -66,9 +66,10 @@ public class SignUpServiceImpl implements ISignUpService {
         if(user.getCode() != null && !code.equals(user.getCode())){
             return  SignUpError.ERROR_CAPTCHA_FALSE;
         }
-        // save user into Database & delete RedisCache
         sysUserMapper.saveUser(user);
-        // adopt token
-        return JWTUtil.createToken(user.getUsername());
+        redisCache.deleteObject(RedisPrefix.SIGN_UP+user.getUuid());
+        String token = JWTUtil.createToken(user.getUsername());
+        redisCache.setCacheObject(RedisPrefix.SIGNED_TOKEN + user.getEmail(),token,2,TimeUnit.HOURS);
+        return token;
     }
 }
