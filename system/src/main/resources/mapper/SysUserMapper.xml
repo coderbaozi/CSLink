@@ -13,7 +13,19 @@
         SELECT email FROM sys_user where email = #{email}
     </select>
 
-    <insert id="saveUser" parameterType="com.cslink.domain.vo.SignupVO">
+    <insert id="saveUser">
         insert into sys_user(username,email,password) values(#{username},#{email},#{password})
     </insert>
+
+    <select id="queryEmailByUsername" resultType="com.cslink.domain.vo.LoginUserVO">
+        SELECT email FROM sys_user where username = #{username}
+    </select>
+
+    <select id="queryUserNameAndPassword" resultType="java.lang.Integer">
+        SELECT * FROM sys_user where username = #{username} and password = #{password}
+    </select>
+
+    <select id="queryEmailAndPassword" resultType="java.lang.Integer">
+        SELECT * FROM sys_user where email = #{email} and password = #{password}
+    </select>
 </mapper>
