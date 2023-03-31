@@ -5,7 +5,12 @@ public class HttpStatus {
      * 操作成功（常用）
      */
     public static final int SUCCESS = 200;
+    /**
+     * 操作失败（常用）
+     */
+    public static final int ERROR = 500;
 
+    public static final int WARN = 601;
     /**
      * 对象创建成功
      */
@@ -70,11 +75,6 @@ public class HttpStatus {
      * 不支持的数据，媒体类型
      */
     public static final int UNSUPPORTED_TYPE = 415;
-
-    /**
-     * 系统内部错误（常用）
-     */
-    public static final int ERROR = 500;
 
     /**
      * 接口未实现
