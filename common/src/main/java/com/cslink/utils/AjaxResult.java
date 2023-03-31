@@ -33,6 +33,29 @@ public class AjaxResult extends HashMap<String, Object> {
         return new AjaxResult(HttpStatus.SUCCESS,msg,Data);
     }
 
-    // TODO Error
-    // TODO WARN
+    public static AjaxResult error()
+    {
+        return AjaxResult.error("操作失败");
+    }
+
+    public static AjaxResult error(String msg)
+    {
+        return AjaxResult.error(msg, null);
+    }
+    public static AjaxResult error(String msg, Object data)
+    {
+        return new AjaxResult(HttpStatus.ERROR, msg, data);
+    }
+    public static AjaxResult warn(){
+        return AjaxResult.warn("警告!网络不是不法之地");
+    }
+    public static AjaxResult warn(String msg)
+    {
+        return AjaxResult.warn(msg, null);
+    }
+    public static AjaxResult warn(String msg, Object data)
+    {
+        return new AjaxResult(HttpStatus.WARN, msg, data);
+    }
+
 }
