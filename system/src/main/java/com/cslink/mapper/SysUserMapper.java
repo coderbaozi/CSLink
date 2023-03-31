@@ -24,4 +24,6 @@ public interface SysUserMapper extends BaseMapper<SysUser> {
     SysUser queryUserNameAndPassword(@Param("username") String username,@Param("password") String password);
 
     SysUser queryEmailAndPassword(@Param("email") String email,@Param("password") String password);
+
+    SysUser queryUserIdByEmail(@Param("email")String email);
 }

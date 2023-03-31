@@ -26,4 +26,10 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper,SysUser> imple
         return sysUserMapper.getUserInfoByID(userID);
     }
 
+    @Override
+    public Integer getUserIdByEmail(String email) {
+        Integer userId = sysUserMapper.queryUserIdByEmail(email).getUserId();
+        return userId;
+    }
+
 }

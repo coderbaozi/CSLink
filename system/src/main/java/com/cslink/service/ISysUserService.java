@@ -14,5 +14,5 @@ import java.util.List;
 public interface ISysUserService extends IService<SysUser> {
     public List<SysUser> getUserInfoByID(Integer userID);
 
-
+    public Integer getUserIdByEmail(String email);
 }

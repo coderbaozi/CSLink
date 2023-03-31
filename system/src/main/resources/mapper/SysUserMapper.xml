@@ -28,4 +28,8 @@
     <select id="queryEmailAndPassword" resultType="com.cslink.domain.SysUser">
         SELECT * FROM sys_user where email = #{email} and password = #{password}
     </select>
+
+    <select id="queryUserIdByEmail" resultType="com.cslink.domain.SysUser">
+        select user_id from sys_user where email = #{email}
+    </select>
 </mapper>
