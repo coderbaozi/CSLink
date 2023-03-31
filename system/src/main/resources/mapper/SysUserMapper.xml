@@ -21,11 +21,11 @@
         SELECT email FROM sys_user where username = #{username}
     </select>
 
-    <select id="queryUserNameAndPassword" resultType="java.lang.Integer">
+    <select id="queryUserNameAndPassword" resultType="com.cslink.domain.SysUser">
         SELECT * FROM sys_user where username = #{username} and password = #{password}
     </select>
 
-    <select id="queryEmailAndPassword" resultType="java.lang.Integer">
+    <select id="queryEmailAndPassword" resultType="com.cslink.domain.SysUser">
         SELECT * FROM sys_user where email = #{email} and password = #{password}
     </select>
 </mapper>

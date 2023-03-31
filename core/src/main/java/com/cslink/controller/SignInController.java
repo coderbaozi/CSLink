@@ -23,8 +23,10 @@ public class SignInController {
         return AjaxResult.success(res);
     }
     @PostMapping("/getToken")
-    public AjaxResult getToken(@RequestBody String token){
-        signInService.refreshToken(token);
-        return null;
+    public AjaxResult getToken(@RequestBody Map<String,String> tokenMap){
+        String freshToken = signInService.refreshToken(tokenMap.get("token"));
+        Map res = new HashMap();
+        res.put("token",freshToken);
+        return AjaxResult.success(res);
     }
 }

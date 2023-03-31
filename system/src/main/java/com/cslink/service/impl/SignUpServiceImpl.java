@@ -12,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.security.NoSuchAlgorithmException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 @Service
@@ -68,7 +70,9 @@ public class SignUpServiceImpl implements ISignUpService {
         }
         sysUserMapper.saveUser(user);
         redisCache.deleteObject(RedisPrefix.SIGN_UP+user.getUuid());
-        String token = JWTUtil.createToken(user.getUsername());
+        Map claims = new HashMap<>();
+        claims.put("email",user.getEmail());
+        String token = JWTUtil.createToken(claims);
         redisCache.setCacheObject(RedisPrefix.SIGNED_TOKEN + user.getEmail(),token,2,TimeUnit.HOURS);
         return token;
     }
