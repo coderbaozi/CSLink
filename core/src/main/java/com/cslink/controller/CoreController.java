@@ -3,8 +3,10 @@ package com.cslink.controller;
 import com.cslink.constants.ArticleMSG;
 import com.cslink.domain.Article;
 import com.cslink.domain.ArticleContent;
+import com.cslink.domain.Tag;
 import com.cslink.domain.vo.ArticleVo;
 import com.cslink.service.IArticleService;
+import com.cslink.service.ITagService;
 import com.cslink.utils.AjaxResult;
 import jakarta.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,8 @@ public class CoreController {
 
     @Resource
     IArticleService articleService;
+    @Resource
+    ITagService tagService;
     @GetMapping("/getArticleList")
     public AjaxResult getArticleByTag(@RequestParam("tagId")Integer tagID,@RequestParam("page") Integer page){
         int PAGE_SIZE = 20;
@@ -30,13 +34,18 @@ public class CoreController {
     }
 
     @PostMapping("/saveArticle")
-    public AjaxResult saveArticle(@RequestBody ArticleVo article){
-        // TODO based on token query user_id
-        Integer effectedRow = articleService.saveArticle(article);
+    public AjaxResult saveArticle(@RequestBody ArticleVo article,@RequestHeader("Authorization")String token){
+        Integer effectedRow = articleService.saveArticle(article,token);
         if(effectedRow > 0){
             return AjaxResult.success(ArticleMSG.COMMITED);
         }
         // TODO AjaxError
         return AjaxResult.success("error");
+    }
+
+    @GetMapping("/getTags")
+    public AjaxResult getTags(){
+        List<Tag> tags = tagService.getTagList();
+        return AjaxResult.success(tags);
     }
 }
