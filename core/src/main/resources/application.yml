@@ -49,4 +49,9 @@ spring:
 mybatis-plus:
   mapper-locations:
     - classpath:/mapper/*Mapper.xml
-    - classpath*"/mapper/**/*Mapper.xml
+    - classpath*:/mapper/**/*Mapper.xml
+
+token:
+  header: Authorization
+  secret: aflk2345utyipseruf23456hias
+  expireTime: 120
