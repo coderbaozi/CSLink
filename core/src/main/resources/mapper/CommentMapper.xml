@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cslink.mapper.CommentMapper">
+    <select id="queryCommentByArticleId" resultType="com.cslink.domain.Comment">
+        select * from comment where article_id = #{articleId}
+    </select>
+    <insert id="saveArticleContent">
+        insert into article_content(article_id,content) VALUES (#{articleId},#{content})
+    </insert>
+</mapper>

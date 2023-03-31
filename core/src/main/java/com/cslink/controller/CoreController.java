@@ -3,9 +3,11 @@ package com.cslink.controller;
 import com.cslink.constants.ArticleMSG;
 import com.cslink.domain.Article;
 import com.cslink.domain.ArticleContent;
+import com.cslink.domain.Comment;
 import com.cslink.domain.Tag;
 import com.cslink.domain.vo.ArticleVo;
 import com.cslink.service.IArticleService;
+import com.cslink.service.ICommentService;
 import com.cslink.service.ITagService;
 import com.cslink.utils.AjaxResult;
 import jakarta.annotation.Resource;
@@ -21,6 +23,8 @@ public class CoreController {
     IArticleService articleService;
     @Resource
     ITagService tagService;
+    @Resource
+    ICommentService commentService;
     @GetMapping("/getArticleList")
     public AjaxResult getArticleByTag(@RequestParam("tagId")Integer tagID,@RequestParam("page") Integer page){
         int PAGE_SIZE = 20;
@@ -47,5 +51,11 @@ public class CoreController {
     public AjaxResult getTags(){
         List<Tag> tags = tagService.getTagList();
         return AjaxResult.success(tags);
+    }
+
+    @GetMapping("/getComment/{articleId}")
+    public AjaxResult getComment(@PathVariable Integer articleId){
+        List<Comment> comment = commentService.queryCommentByArticleId(articleId);
+        return AjaxResult.success(comment);
     }
 }
