@@ -21,7 +21,9 @@ public class TokenConfig  implements WebMvcConfigurer {
                 "/existEmail/**",
                 "/getArticle",
                 "/getArticleList",
-                "/getTags"
+                "/getTags",
+                "/getComment/*",
+                "/getUserName"
         );
     }
 }
