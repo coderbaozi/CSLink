@@ -1,19 +1,14 @@
 package com.cslink.controller;
-
-import com.cslink.constants.RedisPrefix;
 import com.cslink.constants.SignUpError;
 import com.cslink.domain.vo.SignupVO;
 import com.cslink.service.ISignUpService;
 import com.cslink.utils.AjaxResult;
-import com.cslink.utils.GenerateCaptcha;
 import com.cslink.utils.RedisCache;
-import com.cslink.utils.UUIDUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.NoSuchAlgorithmException;
 import java.util.*;
-import java.util.concurrent.TimeUnit;
 
 @RestController
 public class SignUpController {

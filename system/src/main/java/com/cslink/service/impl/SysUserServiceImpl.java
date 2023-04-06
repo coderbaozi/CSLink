@@ -32,4 +32,10 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper,SysUser> imple
         return userId;
     }
 
+    @Override
+    public String getUserNameById(Integer userId) {
+        String username = sysUserMapper.queryUserNameById(userId).getUsername();
+        return username;
+    }
+
 }

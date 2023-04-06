@@ -53,7 +53,6 @@ public class SignInService implements ISignInService {
         if(email == null) {
 
         }
-        // TODO parse token get
         Map claim = new HashMap<>();
         claim.put("email",email);
         if(email != null) {

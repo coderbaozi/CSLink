@@ -12,7 +12,6 @@ import java.util.List;
 public interface SysUserMapper extends BaseMapper<SysUser> {
     List<SysUser> getUserInfoByID(Integer userID);
 
-
     SignupVO existUserName(String username);
 
     SignupVO existEmail(String email);
@@ -26,4 +25,6 @@ public interface SysUserMapper extends BaseMapper<SysUser> {
     SysUser queryEmailAndPassword(@Param("email") String email,@Param("password") String password);
 
     SysUser queryUserIdByEmail(@Param("email")String email);
+
+    SysUser queryUserNameById(@Param("userId")Integer userId);
 }

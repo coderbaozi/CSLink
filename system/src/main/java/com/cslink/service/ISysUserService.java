@@ -15,4 +15,6 @@ public interface ISysUserService extends IService<SysUser> {
     public List<SysUser> getUserInfoByID(Integer userID);
 
     public Integer getUserIdByEmail(String email);
+
+    public String getUserNameById(Integer userId);
 }

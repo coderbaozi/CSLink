@@ -32,4 +32,8 @@
     <select id="queryUserIdByEmail" resultType="com.cslink.domain.SysUser">
         select user_id from sys_user where email = #{email}
     </select>
+
+    <select id="queryUserNameById" resultType="com.cslink.domain.SysUser">
+        select username from sys_user where user_id = #{userId}
+    </select>
 </mapper>
