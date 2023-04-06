@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cslink.mapper.ArticleContentMapper">
+    <select id="queryArticleContentByArticleId" resultType="com.cslink.domain.ArticleContent">
+        SELECT * FROM article_content where article_id = #{articleId}
+    </select>
+
+    <insert id="saveArticleContent">
+        INSERT INTO article_content(article_id,content) VALUES (#{articleId},#{content})
+    </insert>
+</mapper>

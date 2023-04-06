@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cslink.mapper.ArticleMapper">
+    <select id="queryPageArticleListByTag" resultType="com.cslink.domain.Article">
+        SELECT * FROM article where tag_id = #{tagId} limit #{offset},#{pageSize}
+    </select>
+
+    <insert id="saveArticle">
+        insert into article(title,create_time,user_id,tag_id,cover) values (#{title},#{createTime},#{userId},#{tagId},#{cover})
+    </insert>
+
+    <select id="queryArticleId" resultType="java.lang.Integer">
+        SELECT article_id from article where user_id = #{userId} and title = #{title}
+    </select>
+
+    <select id="queryArticleById" resultType="com.cslink.domain.dto.ArticleDTO">
+        SELECT * FROM article where article_id = #{articleId}
+    </select>
+</mapper>

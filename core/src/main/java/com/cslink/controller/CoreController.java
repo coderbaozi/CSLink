@@ -5,6 +5,7 @@ import com.cslink.domain.Article;
 import com.cslink.domain.ArticleContent;
 import com.cslink.domain.Comment;
 import com.cslink.domain.Tag;
+import com.cslink.domain.dto.ArticleDTO;
 import com.cslink.domain.vo.ArticleVo;
 import com.cslink.service.IArticleService;
 import com.cslink.service.ICommentService;
@@ -33,8 +34,8 @@ public class CoreController {
     }
     @GetMapping("/getArticle")
     public AjaxResult getArticle(@RequestParam("articleId")Integer articleId) {
-        ArticleContent articleContent = articleService.getArticleContent(articleId);
-        return AjaxResult.success(articleContent);
+        ArticleDTO articleDTO = articleService.queryArticleById(articleId);
+        return AjaxResult.success(articleDTO);
     }
 
     @PostMapping("/saveArticle")
