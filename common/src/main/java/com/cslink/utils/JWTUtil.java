@@ -4,7 +4,6 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Value;
 import io.jsonwebtoken.Jwts;
-import org.springframework.stereotype.Component;
 
 import java.util.Map;
 public class JWTUtil {
@@ -15,6 +14,7 @@ public class JWTUtil {
         return Jwts.builder().addClaims(claims).signWith(SignatureAlgorithm.HS256,secret).compact();
     }
 
+    // TODO verify token maybe throw Exception
     public static Claims praseToken(String token) {
         return Jwts.parserBuilder().setSigningKey(secret).build().parseClaimsJws(token).getBody();
     }
