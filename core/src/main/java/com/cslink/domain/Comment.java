@@ -32,8 +32,7 @@ public class Comment implements Serializable {
     private Integer formUid;
     
     private Integer toUid;
-    
-    private String articleContent;
+
     
     private Date commentTime;
 
