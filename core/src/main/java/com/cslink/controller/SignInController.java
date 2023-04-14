@@ -17,6 +17,7 @@ public class SignInController {
 
     @PostMapping("/signin")
     public AjaxResult signIn(@RequestBody LoginUserVO user){
+        //TODO lack error handle when login failed
         String signInRes = signInService.signin(user);
         Map res = new HashMap<>();
         res.put("token",signInRes);

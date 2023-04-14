@@ -6,6 +6,7 @@ import com.cslink.domain.ArticleContent;
 import com.cslink.domain.Comment;
 import com.cslink.domain.Tag;
 import com.cslink.domain.dto.ArticleDTO;
+import com.cslink.domain.dto.CommentDTO;
 import com.cslink.domain.vo.ArticleVo;
 import com.cslink.service.IArticleService;
 import com.cslink.service.ICommentService;
@@ -56,7 +57,7 @@ public class CoreController {
 
     @GetMapping("/getComment/{articleId}")
     public AjaxResult getComment(@PathVariable Integer articleId){
-        List<Comment> comment = commentService.queryCommentByArticleId(articleId);
+        List<CommentDTO> comment = commentService.queryCommentByArticleId(articleId);
         return AjaxResult.success(comment);
     }
 }

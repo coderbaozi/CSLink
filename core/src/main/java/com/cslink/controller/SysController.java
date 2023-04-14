@@ -5,6 +5,7 @@ import com.cslink.mapper.SysUserMapper;
 import com.cslink.service.ISysUserService;
 import com.cslink.utils.AjaxResult;
 import jakarta.annotation.Resource;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,5 +25,12 @@ public class SysController {
     public AjaxResult getUserName(@RequestParam("userId")Integer userId) {
         String username = sysUserServive.getUserNameById(userId);
         return AjaxResult.success("请求成功！",username);
+    }
+
+    @GetMapping("/getUserInfo")
+    public AjaxResult getUserInfo(HttpServletRequest request) {
+        String token = request.getHeader("Authorization");
+        SysUser userInfo = sysUserServive.getUserInfoByToken(token);
+        return AjaxResult.success(userInfo);
     }
 }
