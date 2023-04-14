@@ -5,6 +5,7 @@ import com.cslink.domain.SysUser;
 import com.cslink.domain.vo.SignupVO;
 import com.cslink.mapper.SysUserMapper;
 import com.cslink.service.ISysUserService;
+import com.cslink.utils.JWTUtil;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
@@ -22,7 +23,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper,SysUser> imple
     @Resource
     private SysUserMapper sysUserMapper;
     @Override
-    public List<SysUser> getUserInfoByID(Integer userID) {
+    public SysUser getUserInfoByID(Integer userID) {
         return sysUserMapper.getUserInfoByID(userID);
     }
 
@@ -36,6 +37,13 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper,SysUser> imple
     public String getUserNameById(Integer userId) {
         String username = sysUserMapper.queryUserNameById(userId).getUsername();
         return username;
+    }
+
+    @Override
+    public SysUser getUserInfoByToken(String token) {
+        String email = JWTUtil.getEmailFromToken(token);
+        Integer userId = sysUserMapper.queryUserIdByEmail(email).getUserId();
+        return  sysUserMapper.getUserInfoByID(userId);
     }
 
 }

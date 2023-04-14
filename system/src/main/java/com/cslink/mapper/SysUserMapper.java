@@ -10,7 +10,7 @@ import java.util.List;
 
 @Mapper
 public interface SysUserMapper extends BaseMapper<SysUser> {
-    List<SysUser> getUserInfoByID(Integer userID);
+    SysUser getUserInfoByID(Integer userID);
 
     SignupVO existUserName(String username);
 

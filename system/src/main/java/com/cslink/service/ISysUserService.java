@@ -12,9 +12,11 @@ import java.util.List;
  * @since 2023-03-23 15:45:28
  */
 public interface ISysUserService extends IService<SysUser> {
-    public List<SysUser> getUserInfoByID(Integer userID);
+    public SysUser getUserInfoByID(Integer userID);
 
     public Integer getUserIdByEmail(String email);
 
     public String getUserNameById(Integer userId);
+
+    public SysUser getUserInfoByToken(String token);
 }
