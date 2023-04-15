@@ -1,10 +1,7 @@
 package com.cslink.utils;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.BoundSetOperations;
-import org.springframework.data.redis.core.HashOperations;
-import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.core.ValueOperations;
+import org.springframework.data.redis.core.*;
 import org.springframework.stereotype.Component;
 
 import java.util.*;
@@ -254,5 +251,21 @@ public class RedisCache {
     public Collection<String> keys(final String pattern)
     {
         return redisTemplate.keys(pattern);
+    }
+
+    /**
+     * Hash->value++
+     *
+     * @return 对象列表
+     */
+    public Long incrementHash(String key,String hashKey) {
+        return redisTemplate.opsForHash().increment(key,hashKey,1);
+    }
+    /**
+     * 模糊查询keys
+     */
+    public Set likeQueryHash(String key) {
+        Set keyList = redisTemplate.keys(key + "*");
+        return keyList;
     }
 }
