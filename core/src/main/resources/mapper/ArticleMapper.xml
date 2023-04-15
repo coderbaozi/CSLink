@@ -16,4 +16,8 @@
     <select id="queryArticleById" resultType="com.cslink.domain.dto.ArticleDTO">
         SELECT * FROM article where article_id = #{articleId}
     </select>
+
+    <update id="saveArticleBrowseCount">
+        update article set browse_count = #{browseCount} where article_id = #{articleId}
+    </update>
 </mapper>

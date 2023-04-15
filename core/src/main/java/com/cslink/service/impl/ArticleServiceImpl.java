@@ -47,6 +47,11 @@ public class ArticleServiceImpl implements IArticleService {
     }
 
     @Override
+    public Integer updateBrowseCount(Integer articleId, Integer browseCount) {
+        return articleMapper.saveArticleBrowseCount(articleId,browseCount);
+    }
+
+    @Override
     public Integer queryArticleId(Integer userId,String title) {
         Integer articleId = articleMapper.queryArticleId(userId,title);
         return articleId;
