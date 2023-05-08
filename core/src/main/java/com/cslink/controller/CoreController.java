@@ -43,9 +43,8 @@ public class CoreController {
     @GetMapping("/getArticle")
     public AjaxResult getArticle(@RequestParam("articleId")Integer articleId) {
         ArticleDTO articleDTO = articleService.queryArticleById(articleId);
-//        redisCache.setCacheObject("articleId");
+        // timing task update article relative info
         redisService.saveViewRedis(articleId);
-        System.out.println(redisCache.getCacheMap(ARTICLE_INFO+articleId));
         return AjaxResult.success(articleDTO);
     }
 
