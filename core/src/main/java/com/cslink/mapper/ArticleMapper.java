@@ -16,4 +16,5 @@ public interface ArticleMapper extends BaseMapper<Article> {
     Integer queryArticleId(@Param("userId")Integer userId,@Param("title")String title);
     ArticleDTO queryArticleById(@Param("articleId")Integer articleId);
     Integer saveArticleBrowseCount( @Param("articleId")Integer articleId,@Param("browseCount")Integer browseCount);
+    Integer queryArticleCountsByTag(@Param("tagId")Integer tagId);
 }

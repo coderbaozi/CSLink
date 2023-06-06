@@ -23,7 +23,8 @@ public class TokenConfig  implements WebMvcConfigurer {
                 "/getArticleList",
                 "/getTags",
                 "/getComment/*",
-                "/getUserName"
+                "/getUserName",
+                "/getArticleCount"
         );
     }
 }

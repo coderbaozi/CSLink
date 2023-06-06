@@ -47,5 +47,7 @@ public class Article implements Serializable {
     private String articleContent;
 
     private String username;
+
+    private String lastCommentUsername;
 }
 

@@ -18,17 +18,16 @@ public class CommentDTO implements Serializable {
 
         private Integer id;
 
-        private Integer commentType;
 
         private String content;
-
-        private Integer formUid;
 
         private Integer toUid;
 
         private Date commentTime;
 
         private String username;
+
+        private Integer parentId;
 
         private String toUsername;
 }

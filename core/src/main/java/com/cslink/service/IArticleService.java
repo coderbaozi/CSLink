@@ -12,6 +12,6 @@ public interface IArticleService {
     Integer queryArticleId(Integer userId,String title);
     Integer saveArticle(ArticleVo article,String token);
     ArticleDTO queryArticleById(Integer articleId);
-
     Integer updateBrowseCount(Integer articleId,Integer browseCount);
+    Integer getArticleCounts(Integer tagId);
 }

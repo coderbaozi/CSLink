@@ -2,12 +2,15 @@ package com.cslink.service.impl;
 
 import com.cslink.domain.Article;
 import com.cslink.domain.ArticleContent;
+import com.cslink.domain.Comment;
 import com.cslink.domain.dto.ArticleDTO;
 import com.cslink.domain.vo.ArticleVo;
 import com.cslink.mapper.ArticleContentMapper;
 import com.cslink.mapper.ArticleMapper;
+import com.cslink.mapper.CommentMapper;
 import com.cslink.mapper.SysUserMapper;
 import com.cslink.service.IArticleService;
+import com.cslink.service.ICommentService;
 import com.cslink.utils.JWTUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,6 +27,9 @@ public class ArticleServiceImpl implements IArticleService {
     ArticleContentMapper articleContentMapper;
 
     @Autowired
+    ICommentService commentService;
+
+    @Autowired
     SysUserMapper sysUserMapper;
 
     @Override
@@ -32,6 +38,12 @@ public class ArticleServiceImpl implements IArticleService {
         for (int i = 0; i < articles.size(); i++) {
             Article article = articles.get(i);
             articles.get(i).setUsername(sysUserMapper.queryUserNameById(article.getUserId()).getUsername());
+            Comment lastComment = commentService.getLastComment(articles.get(i).getArticleId());
+            if(lastComment!= null) {
+                String username = sysUserMapper.queryUserNameById(lastComment.getUserId()).getUsername();
+                articles.get(i).setLastCommentUsername(username);
+            }
+
         }
         return articles;
     }
@@ -49,6 +61,11 @@ public class ArticleServiceImpl implements IArticleService {
     @Override
     public Integer updateBrowseCount(Integer articleId, Integer browseCount) {
         return articleMapper.saveArticleBrowseCount(articleId,browseCount);
+    }
+
+    @Override
+    public Integer getArticleCounts(Integer tagId) {
+        return articleMapper.queryArticleCountsByTag(tagId);
     }
 
     @Override

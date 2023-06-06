@@ -29,12 +29,10 @@ public class Comment implements Serializable {
     
     private String content;
     
-    private Integer formUid;
-    
     private Integer toUid;
 
-    
     private Date commentTime;
 
+    private Integer parentId;
 }
 

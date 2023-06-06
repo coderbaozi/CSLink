@@ -4,7 +4,11 @@
     <select id="queryCommentByArticleId" resultType="com.cslink.domain.dto.CommentDTO">
         select * from comment where article_id = #{articleId}
     </select>
-    <insert id="saveArticleContent">
-        insert into article_content(article_id,content) VALUES (#{articleId},#{content})
+    <insert id="insertComment">
+        insert into comment(article_id,user_id,content,to_uid,comment_time,parent_id)
+        VALUES (#{articleId},#{userId},#{content},#{toUid},#{commentTime},#{parentId})
     </insert>
+    <select id="queryLastCommentUser" resultType="com.cslink.domain.Comment">
+        select * from comment where comment_time = (select MAX(comment_time) from comment where article_id = #{articleId})
+    </select>
 </mapper>

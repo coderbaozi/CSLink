@@ -1,6 +1,5 @@
 package com.cslink.interceptor;
 
-import com.cslink.constants.RedisPrefix;
 import com.cslink.constants.SignInError;
 import com.cslink.utils.AjaxResult;
 import com.cslink.utils.JSONUtil;
@@ -8,7 +7,6 @@ import com.cslink.utils.JWTUtil;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.web.servlet.HandlerInterceptor;
-import org.springframework.web.servlet.ModelAndView;
 
 public class TokenInterceptor implements HandlerInterceptor {
 

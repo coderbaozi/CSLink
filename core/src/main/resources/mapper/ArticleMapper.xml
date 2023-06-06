@@ -20,4 +20,8 @@
     <update id="saveArticleBrowseCount">
         update article set browse_count = #{browseCount} where article_id = #{articleId}
     </update>
+
+    <select id="queryArticleCountsByTag" resultType="java.lang.Integer">
+        select count(*) from article where tag_id = #{tagId}
+    </select>
 </mapper>
